@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FireSync – Google Sheets ↔ Firestore Sync Add-on</title>
+  <meta name="description" content="FireSync by HMRUS LLC: a Google Sheets add-on for simple, bi-directional syncing with Firestore." />
+  <style>
+    :root { --bg:#0b0c10; --panel:#111217; --text:#e9eef3; --muted:#a7b0b8; --accent:#ff6b3d; --border:#1c1f27; --code:#0f1115; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+    header { padding: 12px 0 8px; }
+    .kicker { color: var(--muted); font-size: .95rem; }
+    h1 { font-size: 2rem; margin: 6px 0 10px; }
+    h2 { margin-top: 28px; font-size: 1.35rem; }
+    h3 { margin-top: 22px; font-size: 1.1rem; }
+    .panel { background: var(--panel); border:1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin: 14px 0; }
+    ul { padding-left: 1.2rem; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: .95rem; }
+    pre { background: var(--code); border:1px solid var(--border); border-radius: 10px; padding: 14px; overflow:auto; }
+    footer { margin-top: 40px; color: var(--muted); font-size: .92rem; }
+    nav { margin: 10px 0 20px; }
+    .pill { display:inline-block; background:#1b1f2a; color:#c9d3de; border:1px solid var(--border); padding:2px 10px; border-radius:999px; font-size:.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">HMRUS LLC</div>
+      <h1>🔥 FireSync — Google Sheets ↔ Firestore Sync Add-on</h1>
+      <nav>
+        <a class="pill" href="privacy.html">Privacy Policy</a>
+        <a class="pill" href="terms.html" style="margin-left:8px;">Terms of Service</a>
+        <a class="pill" href="mailto:firesyncdb@gmail.com" style="margin-left:8px;">Contact</a>
+      </nav>
+    </header>
+
+    <section class="panel">
+      <h2>🚀 Purpose</h2>
+      <p>FireSync delivers a “just works” experience for syncing structured data between Google Sheets and Google Firestore — effortless, reliable, and low‑friction for non‑technical users.</p>
+    </section>
+
+    <section class="panel">
+      <h2>✨ Key Features</h2>
+      <ul>
+        <li>One‑click setup via Google Sheets add‑on</li>
+        <li>Sync individual sheet tabs to Firestore subcollections</li>
+        <li>Modular architecture for easy feature expansion</li>
+        <li>Secure service account authentication (JWT &amp; OAuth2)</li>
+        <li>Real‑time usage analytics shown in‑app</li>
+        <li>Predefined schema bootstrapping for quick start</li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <h2>🛠 Architecture Overview</h2>
+      <p><strong>Platform:</strong> Google Apps Script (Sheets Add‑on)<br>
+         <strong>Backend:</strong> Google Firestore (REST API)<br>
+         <strong>Auth:</strong> JWT signed in Apps Script, exchanged for OAuth2 access token<br>
+         <strong>Storage:</strong> ScriptProperties for private key storage
+      </p>
+
+      <h3>Firestore Structure</h3>
+      <pre><code>users/
+  └── &lt;userId&gt; → email in `emailAddress`
+sheets/
+  └── &lt;spreadsheetId&gt;
+      └── tabs/
+          └── &lt;tabId&gt;
+              └── rows/
+                  └── &lt;rowId&gt;
+config/
+  └── global → environment config &amp; feature flags</code></pre>
+
+      <h3>Security</h3>
+      <pre><code>- Firestore security rules default to deny all
+- HTTPS enforced for all requests
+- Keys never exposed to end users</code></pre>
+    </section>
+
+    <section class="panel">
+      <h2>📊 Data &amp; Privacy Summary</h2>
+      <ul>
+        <li><strong>We collect:</strong> Google account email, the sheet/tab/row content you choose to sync, and usage metrics (sync counts, API usage, data size).</li>
+        <li><strong>We don’t share:</strong> No personal or sheet content is shared with third parties. Only aggregated, non‑identifiable totals may be used.</li>
+        <li><strong>Storage:</strong> Google Cloud Firestore (with Google’s built‑in security).</li>
+        <li><strong>Retention:</strong> No automatic deletion; you control your data lifespan.</li>
+      </ul>
+      <p>See the full <a href="privacy.html">Privacy Policy</a> for details.</p>
+    </section>
+
+    <footer>
+      <p>&copy; <span id="y"></span> HMRUS LLC — <a href="mailto:firesyncdb@gmail.com">firesyncdb@gmail.com</a></p>
+      <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    </footer>
+  </div>
+</body>
+</html>
